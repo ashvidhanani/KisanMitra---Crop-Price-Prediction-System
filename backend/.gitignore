@@ -1,27 +1,32 @@
-# ─── Maven ──────────────────────────────────
+# ─── Maven build output ──────────────────────
 target/
 !.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
 
-# ─── Spring Boot ────────────────────────────
+# ─── Compiled classes ────────────────────────
+*.class
 *.jar
 *.war
 *.ear
-*.class
 
-# ─── CRITICAL — Firebase private key ────────
-src/main/resources/firebase-service-account.json
+# ─── Firebase keys — ALL possible names ──────
+firebase-key.json
+firebase-service-account.json
+serviceAccountKey.json
+google-services.json
+*-firebase-*.json
+*service-account*.json
 
-# ─── Application secrets ────────────────────
-src/main/resources/application-prod.properties
-src/main/resources/application-local.properties
+# ─── Application secrets ─────────────────────
+application-prod.properties
+application-local.properties
+application-secret.properties
+*.env
 
-# ─── Logs ───────────────────────────────────
+# ─── Logs ────────────────────────────────────
 *.log
 logs/
 
-# ─── IDE ────────────────────────────────────
+# ─── IDE ─────────────────────────────────────
 .idea/
 *.iml
 .classpath

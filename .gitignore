@@ -1,31 +1,42 @@
-# ─── OS files ───────────────────────────────
-.DS_Store
-.DS_Store?
-._*
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-
-# ─── IDE / Editors ──────────────────────────
-.idea/
-.vscode/
-*.iml
-*.ipr
-*.iws
-.classpath
-.project
-.settings/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-# Java build output
-target/
-**/target/
-
-# Firebase keys — never commit these
+# ─── Firebase keys everywhere in project ─────
 **/firebase-key.json
 **/firebase-service-account.json
 **/serviceAccountKey.json
+**/google-services.json
+**/*service-account*.json
+**/*firebase-*.json
+
+# ─── Java build output ────────────────────────
+**/target/
+
+# ─── Python ──────────────────────────────────
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/venv/
+**/.venv/
+**/env/
+**/*.pkl
+**/*.joblib
+
+# ─── Node / Angular ──────────────────────────
+**/node_modules/
+**/dist/
+**/.angular/
+**/coverage/
+
+# ─── Environment files ───────────────────────
+**/.env
+**/.env.local
+**/.env.production
+
+# ─── OS files ────────────────────────────────
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ─── IDE ─────────────────────────────────────
+.idea/
+.vscode/
+*.iml
+*.suo
