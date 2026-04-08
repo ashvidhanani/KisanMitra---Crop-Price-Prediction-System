@@ -1,4 +1,4 @@
-#  KisanMitra — Crop Price Prediction System
+#  KisanMitra - Crop Price Prediction System
  
 > A full-stack Decision Support System that predicts Indian crop market prices using Machine Learning, with user authentication and personalized prediction history.
  
@@ -325,8 +325,8 @@ Then open your browser at **http://localhost:4200**
 **Register request:**
 ```json
 {
-  "name": "Ravi Kumar",
-  "email": "ravi@example.com",
+  "name": "Ashvi Dhanani",
+  "email": "ashvi@gmail.com",
   "password": "secret123"
 }
 ```
@@ -337,8 +337,8 @@ Then open your browser at **http://localhost:4200**
   "success": true,
   "message": "Login successful.",
   "userId": "550e8400-e29b-41d4-a716-446655440000",
-  "name": "Ravi Kumar",
-  "email": "ravi@example.com"
+  "name": "Ashvi Dhanani",
+  "email": "ashvi@gmail.com"
 }
 ```
  
