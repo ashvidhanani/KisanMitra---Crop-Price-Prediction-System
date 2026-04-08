@@ -492,11 +492,6 @@ Angular displays result + 6-month trend chart
  
 ---
  
-## 📄 Note
- 
-This project is developed as a **Final Year Engineering Project** and demonstrates the integration of Machine Learning with full-stack web development using Angular, Spring Boot, Flask, and Firebase.
- 
----
  
 ## 👨‍💻 Author : ASHVI DHANANI
  
