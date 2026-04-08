@@ -1,0 +1,104 @@
+<div class="page-wrapper">
+  <div class="container">
+
+    <div class="hero">
+      <h1>Crop Price Prediction</h1>
+      <p>Select a crop, market and date to get an AI-powered price forecast</p>
+    </div>
+
+    <div class="card form-card">
+      <h2 class="card-title"><span>🔍</span> Enter Prediction Details</h2>
+
+      <div class="form-grid">
+        <div class="field">
+          <label for="crop">Crop Name</label>
+          <select id="crop" [(ngModel)]="request.crop" name="crop">
+            <option value="">Select crop...</option>
+            <optgroup *ngFor="let g of crops" [label]="g.group">
+              <option *ngFor="let c of g.items" [value]="c">{{ c }}</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="market">Market Location</label>
+          <select id="market" [(ngModel)]="request.market" name="market">
+            <option value="">Select market...</option>
+            <optgroup *ngFor="let m of markets" [label]="m.group">
+              <option *ngFor="let loc of m.items" [value]="loc">{{ loc }}</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="field full">
+          <label for="date">Prediction Date</label>
+          <input type="date" id="date" [(ngModel)]="request.date" name="date" />
+        </div>
+      </div>
+
+      <div class="error-box" *ngIf="error">⚠️ {{ error }}</div>
+
+      <button class="btn-predict" (click)="predict()" [disabled]="loading">
+        <span *ngIf="!loading">🌾 Predict Price</span>
+        <span *ngIf="loading" class="btn-loading">
+          <span class="spinner-sm"></span> Analyzing...
+        </span>
+      </button>
+    </div>
+
+    <div class="card loading-card" *ngIf="loading">
+      <div class="spinner"></div>
+      <p>Running ML model via Flask AI service...</p>
+    </div>
+
+    <div class="card result-card" *ngIf="result && !loading">
+      <h2 class="card-title"><span>📊</span> Prediction Result</h2>
+
+      <div class="price-hero">
+        <div class="price-label">Predicted Price</div>
+        <div class="price-amount">{{ formatCurrency(result.predictedPricePer20kg) }}</div>
+        <div class="price-unit">per 20 kg</div>
+        <div class="price-quintal">
+          Also: {{ formatCurrency(result.predictedPricePerQuintal) }} per quintal (100 kg)
+        </div>
+      </div>
+
+      <div class="meta-row">
+        <div class="meta-item">
+          <div class="meta-label">Crop</div>
+          <div class="meta-value">{{ result.crop }}</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Market</div>
+          <div class="meta-value">{{ result.market }}</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Date</div>
+          <div class="meta-value">{{ formatDate(result.date) }}</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Unit</div>
+          <div class="meta-value">{{ result.unit }}</div>
+        </div>
+      </div>
+
+      <div class="trend-section" *ngIf="trendData.length">
+        <div class="trend-title">6-Month Price Trend Outlook</div>
+        <div class="trend-bars">
+          <div class="bar-wrap" *ngFor="let bar of trendData">
+            <div class="bar"
+                 [class.current]="bar.isCurrent"
+                 [style.height.%]="bar.height">
+            </div>
+            <div class="bar-label">{{ bar.label }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="saved-notice">
+        ✅ Prediction saved to Firebase Firestore
+      </div>
+    </div>
+
+  </div>
+</div>

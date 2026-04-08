@@ -1,0 +1,46 @@
+<div class="auth-wrapper">
+  <div class="auth-card">
+
+    <div class="auth-logo">🌾</div>
+    <h1 class="auth-title">Welcome Back</h1>
+    <p class="auth-sub">Sign in to KisanMitra</p>
+
+    <div class="field">
+      <label>Email</label>
+      <input
+        type="email"
+        [(ngModel)]="email"
+        placeholder="you@example.com"
+        name="email"
+        autocomplete="email"
+      />
+    </div>
+
+    <div class="field">
+      <label>Password</label>
+      <input
+        type="password"
+        [(ngModel)]="password"
+        placeholder="••••••••"
+        name="password"
+        autocomplete="current-password"
+        (keyup.enter)="login()"
+      />
+    </div>
+
+    <div class="error-box" *ngIf="error">⚠️ {{ error }}</div>
+
+    <button class="btn-auth" (click)="login()" [disabled]="loading">
+      <span *ngIf="!loading">Sign In</span>
+      <span *ngIf="loading" class="btn-loading">
+        <span class="spinner-sm"></span> Signing in...
+      </span>
+    </button>
+
+    <p class="auth-switch">
+      Don't have an account?
+      <a routerLink="/register">Register here</a>
+    </p>
+
+  </div>
+</div>

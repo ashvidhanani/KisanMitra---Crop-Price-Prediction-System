@@ -1,0 +1,55 @@
+<div class="page-wrapper">
+  <div class="container">
+
+    <div class="hero">
+      <h1>Prediction History</h1>
+      <p>All predictions stored in Firebase Firestore</p>
+    </div>
+
+    <div class="card loading-card" *ngIf="loading">
+      <div class="spinner"></div>
+      <p>Loading from Firebase...</p>
+    </div>
+
+    <div class="error-box" *ngIf="error && !loading">⚠️ {{ error }}</div>
+
+    <div class="card empty-card" *ngIf="!loading && !error && history.length === 0">
+      <div class="empty-icon">🌱</div>
+      <p>No predictions yet. Go to <strong>Predict</strong> to get started!</p>
+    </div>
+
+    <div class="card" *ngIf="!loading && history.length > 0">
+      <div class="table-header">
+        <h2 class="card-title"><span>📋</span> Recent Predictions ({{ history.length }})</h2>
+        <button class="btn-refresh" (click)="refresh()">↻ Refresh</button>
+      </div>
+      <div class="table-wrapper">
+        <table class="history-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Crop</th>
+              <th>Market</th>
+              <th>Target Date</th>
+              <th>Price / 20 kg</th>
+              <th>Price / Quintal</th>
+              <th>Predicted On</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of history; let i = index">
+              <td class="idx">{{ i + 1 }}</td>
+              <td class="crop-cell">🌿 {{ item.crop }}</td>
+              <td>{{ item.market }}</td>
+              <td>{{ formatDate(item.date) }}</td>
+              <td class="price-cell">{{ formatCurrency(item.predictedPricePer20kg) }}</td>
+              <td class="price-sec">{{ formatCurrency(item.predictedPricePerQuintal) }}</td>
+              <td class="ts-cell">{{ formatTimestamp(item.createdAt) }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
