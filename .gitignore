@@ -20,3 +20,12 @@ Desktop.ini
 *.njsproj
 *.sln
 *.sw?
+
+# Java build output
+target/
+**/target/
+
+# Firebase keys — never commit these
+**/firebase-key.json
+**/firebase-service-account.json
+**/serviceAccountKey.json
